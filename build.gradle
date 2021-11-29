@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'ru.itx.enp.hadoop.WebApp'
+
+jar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	manifest {
+		attributes 'Main-Class': mainClassName
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.apache.hadoop:hadoop-client:2.6.0'
+}

@@ -1,0 +1,22 @@
+[
+    {
+        "adminState": "NORMAL",
+        "hostName": "data-1.arena.ru"
+    },
+    {
+        "adminState": "NORMAL",
+        "hostName": "data-2.arena.ru"
+    },
+    {
+        "adminState": "NORMAL",
+        "hostName": "data-3.arena.ru"
+    },
+    {
+        "adminState": "NORMAL",
+        "hostName": "data-4.arena.ru"
+    },
+    {
+        "adminState": "NORMAL",
+        "hostName": "data-5.arena.ru"
+    }
+]
