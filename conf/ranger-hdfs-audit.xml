@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+<configuration>
+	<property>
+		<name>xasecure.audit.destination.solr</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>xasecure.audit.destination.solr.batch.filespool.dir</name>
+		<value>/srv/ranger/hdfs_plugin/audit_solr_spool</value>
+	</property>
+	<property>
+		<name>xasecure.audit.destination.solr.force.use.inmemory.jaas.config</name>
+		<value>True</value>
+	</property>
+	<property>
+		<name>xasecure.audit.destination.solr.urls</name>
+		<value>http://master-0.arena.ru:8983/solr/ranger_audits</value>
+	</property>
+	<property>
+		<name>xasecure.audit.is.enabled</name>
+		<value>True</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.loginModuleControlFlag</name>
+		<value>required</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.loginModuleName</name>
+		<value>com.sun.security.auth.module.Krb5LoginModule</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.option.keyTab</name>
+		<value>/etc/security/keytabs/hdfs-namenode.service.keytab</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.option.principal</name>
+		<value>hdfs-namenode/master-1.arena.ru@ARENA.RU</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.option.serviceName</name>
+		<value>solr</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.option.storeKey</name>
+		<value>False</value>
+	</property>
+	<property>
+		<name>xasecure.audit.jaas.Client.option.useKeyTab</name>
+		<value>True</value>
+	</property>
+</configuration>

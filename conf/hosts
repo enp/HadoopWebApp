@@ -1,0 +1,9 @@
+192.168.2.10 master-0.arena.ru  master-0
+192.168.2.2 master-1.arena.ru  master-1    
+192.168.2.3 master-2.arena.ru   master-2 
+192.168.2.4 master-3.arena.ru   master-3  
+192.168.2.5 data-1.arena.ru  data-1  
+192.168.2.6 data-2.arena.ru  data-2 
+192.168.2.8 data-3.arena.ru  data-3   
+192.168.2.7 data-4.arena.ru  data-4   
+192.168.2.9 data-5.arena.ru  data-5   
