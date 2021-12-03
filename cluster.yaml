@@ -28,10 +28,8 @@ kind: Service
 metadata:
   name: hadoop-web-app
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - name: status
-    port: 8080
-    targetPort: 8080
+  - port: 8080
   selector:
     app: hadoop-web-app

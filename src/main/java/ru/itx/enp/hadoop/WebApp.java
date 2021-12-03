@@ -2,13 +2,15 @@ package ru.itx.enp.hadoop;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.StringWriter;
 import java.net.InetSocketAddress;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
-import org.apache.hadoop.security.UserGroupInformation;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -17,20 +19,19 @@ import com.sun.net.httpserver.HttpServer;
 public class WebApp {
 
 	private String connectToHadoop() throws IOException {
-		System.setProperty("java.security.krb5.realm", "ARENA.RU");
-		System.setProperty("java.security.krb5.kdc", "master-0.arena.ru");
 		Configuration conf = new Configuration();
 		conf.addResource(new Path("conf/core-site.xml"));
 		conf.addResource(new Path("conf/hdfs-site.xml"));
-		conf.set("hadoop.security.authentication", "kerberos");
-		conf.set("hadoop.security.authorization", "true");
 		conf.set("fs.hdfs.impl", DistributedFileSystem.class.getName());
-		conf.set("dfs.client.use.datanode.hostname", "true");
-		conf.set("dfs.namenode.kerberos.principal.pattern", "hdfs-namenode/*@ARENA.RU");
-		UserGroupInformation.setConfiguration(conf);
-		UserGroupInformation.loginUserFromKeytab("team0@ARENA.RU", "conf/team0.keytab");
-		FileSystem fs = FileSystem.get(conf);
-		return fs.getUri().toString();
+		System.setProperty("HADOOP_USER_NAME", "team20");
+		try (FileSystem fs = FileSystem.get(conf)) {
+			try (FSDataInputStream is = fs.open(new Path("/user/team20/fake.txt"))) {
+				StringWriter writer = new StringWriter();
+				IOUtils.copy(is, writer, "UTF-8");
+				System.out.print(writer.toString());
+			}
+		}
+		return "OK";
 	}
 
 	public WebApp() throws IOException {
